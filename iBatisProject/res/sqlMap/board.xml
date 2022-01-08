@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace = "Board">
+
+<!--  
+	이 영역에 sql문에 맞는 태그를 사용하여 SQL문을 기술한다.
+	
+	사용할 수 있는 기본적인 태그들 
+	<select> </select>
+	<insert> </insert>
+	<update> </update>
+	<delete> </delete>
+	
+	위 태그에서 사용되는 속성들
+	
+	1) No속성 : 해당 태그를 호출할 때 <sqlMap>태그의 Titlespace와 연결하여 사용하는 이름
+	2) parameterClass 속성 : sql문에 사용될 데이터가 들어있는 객체를 지정한다. 
+							(보통 VO클래스, 자바의 자료형 이름 등이 사용된다.)
+							(typeAlias로 지정한 alias명을 사용할 수 있다.)
+	3) resultClass 속성 : select문을 실행한 결과를 담을 객체를 지정한다. //boardberVo에 담으라는 뜻으로 타입표기
+							(보통 VO클래스, 자바의 자료형이름 등이 사용된다.)
+	4) resultMap 속성 : 결과 레코드 컬럼명과 VO객체의 property 명이 다를 경우에 적절한 매핑을 위해 사용한다. 
+	
+ -->
+  
+  <!-- insert 연습  -->
+  
+  <insert id="insertBoard" parameterClass="kr.or.ddit.board.vo.BoardVO">
+  
+  INSERT INTO Board (board_No,board_Title,board_Content,board_Writer) VALUES(#boardNo#, #boardTitle#,#boardContent#,#boardWriter#)
+  	
+  
+  </insert>
+  
+  <!-- update 연습  -->
+  
+  <update id="updateBoard" parameterClass="kr.or.ddit.board.vo.BoardVO">
+  update board
+  set board_Title = #boardTitle#,
+  	  board_Content = #boardContent#,
+  	  board_Writer = #boardWriter# 
+  where board_No = #boardNo#
+  
+  </update>
+  
+
+	<delete id="deleteBoard" parameterClass="String">
+	
+delete from board
+	where board_No = #boardNo#
+	
+	
+	</delete>
+
+	<!-- select 연습  -->
+  
+  <select id="getAllBoardList" resultClass="boardVO">
+  
+  select board_No as boardNo,
+  		board_Title as boardTitle,
+  		board_Content as boardContent,
+  		board_Writer as boardWriter
+  	from board
+  
+  </select>
+  
+  <select id="getBoard" resultClass="boardVO">
+  
+  select board_No as boardNo,
+  		board_Title as boardTitle,
+  		board_Content as boardContent,
+  		board_Writer as boardWriter
+  	from board
+  	where board_No = #boardNo#
+  
+  </select>
+  
+  <select id = "checkBoard" parameterClass="String" resultClass="int">
+  
+  select count(*) cnt 
+  from board
+  where board_No = #boardNo# <!-- 리턴값 -->
+  
+  
+  </select>
+  
+  <resultMap class = "boardVO" id="boardMap">
+  	<result property="boardNo" column="board_No"></result>
+  	<result property="boardTitle" column="board_Title"></result>
+  	<result property="boardContent" column="board_Content"></result>
+  	<result property="boardWriter" column="board_Writer"></result>
+  </resultMap>
+  
+  <select id = "getSearchBoard" resultMap="boardMap">
+  
+  <!-- not empty면 작동하는 것들  -->
+  
+  select * from board
+  where 1=1
+  <isNotEmpty property = "boardNo">
+  	and board_No = #boardNo#
+  </isNotEmpty>
+  
+  <isNotEmpty property = "boardTitle">
+  and board_Title = #boardTitle#
+  </isNotEmpty>
+  
+  <isNotEmpty property = "boardContent">
+  and board_Content = #boardContent#
+  </isNotEmpty>
+  
+  <isNotEmpty property = "boardWriter">
+  and board_Writer like '%' || #boardWriter# || '%' 
+  </isNotEmpty>
+			
+  </select>
+</sqlMap>			
+
+  
+
+
+
+

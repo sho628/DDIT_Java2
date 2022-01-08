@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>ServletTest</display-name>
+ 
+	<servlet>
+		<servlet-name>T01_ServletLifeCycle</servlet-name>
+		<servlet-class>kr.or.ddit.basic.T01_ServletLifeCycle</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>T01_ServletLifeCycle</servlet-name>
+		<url-pattern>/T01_ServletLifeCycle</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>T02_ServletTest</servlet-name>
+		<servlet-class>kr.or.ddit.basic.T02_ServletTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>T02_ServletTest</servlet-name>
+		<url-pattern>/T02_ServletTest</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>T03_ServletParameterTest</servlet-name>
+		<servlet-class>kr.or.ddit.basic.T03_ServletParameterTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>T03_ServletParameterTest</servlet-name>
+		<url-pattern>/T03_ServletParameterTest</url-pattern>
+	</servlet-mapping>
+ 	
+ 	<servlet>
+ 		<servlet-name>T04_ErrorHandler</servlet-name>
+ 		<servlet-class>kr.or.ddit.basic.T04_ErrorHandler</servlet-class>
+ 	</servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>T04_ErrorHandler</servlet-name>
+ 		<url-pattern>/T04_ErrorHandler</url-pattern>
+ 	</servlet-mapping>
+ 	
+ 	<servlet>
+ 		<servlet-name>T05_ServletCookieTest</servlet-name>
+ 		<servlet-class>kr.or.ddit.basic.T05_ServletCookieTest</servlet-class>
+ 	</servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>T05_ServletCookieTest</servlet-name>
+ 		<url-pattern>/T05_ServletCookieTest</url-pattern>
+ 	</servlet-mapping>
+ 	
+ 	<servlet>
+ 		<servlet-name>T06_ServletSessionTest</servlet-name>
+ 		<servlet-class>kr.or.ddit.basic.T06_ServletSessionTest</servlet-class>
+ 	</servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>T06_ServletSessionTest</servlet-name>
+ 		<url-pattern>/T06_ServletSessionTest</url-pattern>
+ 	</servlet-mapping>
+ 	
+ 	<servlet>
+ 		<servlet-name>T07_ServletContextTest</servlet-name>
+ 		<servlet-class>kr.or.ddit.basic.T07_ServletContextTest</servlet-class>
+ 	</servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>T07_ServletContextTest</servlet-name>
+ 		<url-pattern>/T07_ServletContextTest</url-pattern>
+ 	</servlet-mapping>
+ 	<!-- 
+ 	<servlet>
+ 		<servlet-name>UploadServlet2</servlet-name>
+ 		<servlet-class>kr.or.ddit.upload.UploadServlet2</servlet-class>
+ 		<multipart-config>
+ 			<max-file-size>40000000</max-file-size>
+ 			<max-request-size>50000000</max-request-size>
+ 			<file-size-threshold>3000000</file-size-threshold>
+ 		</multipart-config>
+ 	</servlet>
+ 	
+ 	<servlet-mapping>
+ 		<servlet-name>UploadServlet2</servlet-name>
+ 		<url-pattern>/upload3</url-pattern>
+ 	</servlet-mapping>
+ 	 -->
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	<filter>
+ 		<filter-name>T08_ServletFilter</filter-name>
+ 		<filter-class>kr.or.ddit.basic.T08_ServletFilter</filter-class>
+ 		<init-param>
+ 			<param-name>init-param</param-name>
+ 			<param-value>첫번째서블릿 필터</param-value>
+ 		</init-param>
+ 	</filter>
+ 	<filter-mapping>
+ 		<filter-name>T08_ServletFilter</filter-name>
+ 		<url-pattern>/*</url-pattern>
+ 	</filter-mapping>
+ 	
+ 	<filter>
+ 		<filter-name>T09_ServletFilter2</filter-name>
+ 		<filter-class>kr.or.ddit.basic.T09_ServletFilter2</filter-class>
+ 	</filter>
+ 	<filter-mapping>
+ 		<filter-name>T09_ServletFilter2</filter-name>
+ 		<url-pattern>/*</url-pattern>
+ 	</filter-mapping>
+ 	
+ 	
+ 	<filter>
+ 		<filter-name>CharacterEncodingFilter</filter-name>
+ 		<filter-class>kr.or.ddit.filter.CharacterEncodingFilter</filter-class>
+ 		<init-param>
+ 			<param-name>encoding</param-name>
+ 			<param-value>UTF-8</param-value>
+ 		</init-param>
+ 	</filter>
+ 	<filter-mapping>
+ 		<filter-name>CharacterEncodingFilter</filter-name>
+ 		<url-pattern>/*</url-pattern>
+ 	</filter-mapping>
+ 	
+ 	<filter>
+ 		<filter-name>MultipartParser</filter-name>
+ 		<filter-class>kr.or.ddit.filter.MultipartParser</filter-class>
+ 	</filter>
+ 	<filter-mapping>
+ 		<filter-name>MultipartParser</filter-name>
+ 		<url-pattern>*.do</url-pattern>
+ 	</filter-mapping>
+ 	
+ 	
+ 	<listener>
+ 		<display-name>MyServletContextListener</display-name>
+ 		<listener-class>kr.or.ddit.listener.MyServletContextListener</listener-class>
+ 	</listener>
+
+ 	<listener>
+ 		<display-name>MyServletRequestListener</display-name>
+ 		<listener-class>kr.or.ddit.listener.MyServletRequestListener</listener-class>
+ 	</listener>
+ 	
+ 	<listener>
+ 		<display-name>MyHttpSessionListener</display-name>
+ 		<listener-class>kr.or.ddit.listener.MyHttpSessionListener</listener-class>
+ 	</listener>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+	<!-- 
+		URL-Mapping에 대하여...
+		
+		1. /로 시작... *로 끝나기 => 경로 매핑용
+		2. *로 시작	ex) *.do => 확장자에 대한 매핑용
+		3. /				 => 기본(default) 서블릿 매핑
+		4. 이외 나머지 규칙은 정확한 매핑을 위해 사용됨.
+		
+	 -->
+ 	
+ 	
+ 	<session-config>
+ 		<session-timeout>1</session-timeout>
+ 	</session-config>
+ 	
+ 	
+<!--  	<error-page> -->
+<!--  		<error-code>404</error-code> -->
+<!--  		<location>/T04_ErrorHandler</location> -->
+<!--  	</error-page> -->
+ 	
+<!--  	<error-page> -->
+<!--  		<exception-type>java.lang.Throwable</exception-type> -->
+<!--  		<location>/T04_ErrorHandler</location> -->
+<!--  	</error-page> -->
+ 	
+ 
+</web-app>
